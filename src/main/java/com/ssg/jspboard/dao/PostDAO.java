@@ -1,7 +1,7 @@
 package com.ssg.jspboard.dao;
 
 import com.ssg.jspboard.dto.PostDTO;
-import com.sun.tools.javac.util.List;
+import java.util.List;
 import java.util.Optional;
 
 public interface PostDAO {
