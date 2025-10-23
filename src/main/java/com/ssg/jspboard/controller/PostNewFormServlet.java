@@ -1,0 +1,11 @@
+package com.ssg.jspboard.controller;
+
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+
+
+@WebServlet(name = "postNewFormServlet", urlPatterns = "/posts/new")
+public class PostNewFormServlet extends HttpServlet {
+
+
+}
