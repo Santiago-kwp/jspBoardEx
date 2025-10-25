@@ -1,15 +1,16 @@
 package com.ssg.jspboard.dao;
 
-import com.ssg.jspboard.dto.PostDTO;
+import com.ssg.jspboard.domain.PostVO;
+
 import java.util.List;
 import java.util.Optional;
 
 public interface PostDAO {
-  List<PostDTO> findAll(int page, int size);
+  List<PostVO> findAll(int page, int size);
   boolean countAll();
-  Optional<PostDTO> findById(long id);
-  long save(PostDTO post);
-  boolean  update(PostDTO post);
+  Optional<PostVO> findById(long id);
+  long save(PostVO post);
+  boolean  update(PostVO post);
   boolean  delete(long id);
   boolean checkPassphrase(long id, String passphrase);
 }

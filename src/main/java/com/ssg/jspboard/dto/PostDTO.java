@@ -1,11 +1,13 @@
 package com.ssg.jspboard.dto;
 
 import java.time.LocalDateTime;
-import lombok.Getter;
-import lombok.Setter;
 
-@Getter
-@Setter
+import lombok.*;
+
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class PostDTO {
   private Long postId;
   private String title;

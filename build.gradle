@@ -43,6 +43,8 @@ dependencies {
     implementation 'com.zaxxer:HikariCP:5.0.1'
     // https://mvnrepository.com/artifact/jstl/jstl
     implementation 'jstl:jstl:1.2'
+    implementation 'org.modelmapper:modelmapper:3.0.0'
+
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
