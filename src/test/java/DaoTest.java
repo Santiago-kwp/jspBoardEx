@@ -8,7 +8,7 @@ public class DaoTest {
     @Test
     public void findAllPostsTest() {
         PostDAO postDAO = new PostDAOImpl();
-        postDAO.findAll(1, 10);
+        postDAO.findAll(1, 100);
 
     }
 }
