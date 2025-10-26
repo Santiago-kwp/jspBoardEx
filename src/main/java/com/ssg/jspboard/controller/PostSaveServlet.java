@@ -37,7 +37,7 @@ public class PostSaveServlet extends HttpServlet {
         } catch (IllegalArgumentException e) {
             // ❗ 여기서 오류 메시지를 담고 다시 폼으로 forward
             request.setAttribute("error", e.getMessage());
-            request.getRequestDispatcher("/WEB-INF/views/form.jsp").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/views/formCommon.jsp").forward(request, response);
         }
 
 

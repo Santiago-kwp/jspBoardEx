@@ -49,7 +49,7 @@ public class PostUpdateServlet extends HttpServlet {
 
             req.setAttribute("post", dto);
             // 실패 시 데이터를 가지고 다시 수정 페이지로 이동
-            req.getRequestDispatcher("/WEB-INF/views/edit.jsp").forward(req, resp);
+            req.getRequestDispatcher("/WEB-INF/views/formCommon.jsp").forward(req, resp);
 
         } catch (Exception e) {
             log.error("게시글 수정 중 오류", e);

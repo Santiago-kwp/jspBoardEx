@@ -23,7 +23,7 @@ public class PostEditFormServlet extends HttpServlet {
             long id = Long.parseLong(req.getParameter("id"));
             PostDTO dto = postService.getDetail(id); // 기존 글 조회
             req.setAttribute("post", dto);
-            req.getRequestDispatcher("/WEB-INF/views/edit.jsp").forward(req, resp);
+            req.getRequestDispatcher("/WEB-INF/views/formCommon.jsp").forward(req, resp);
         } catch (NumberFormatException e) {
             log.warn("잘못된 ID 형식: {}", req.getParameter("id"));
             resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "잘못된 게시글 ID입니다.");
