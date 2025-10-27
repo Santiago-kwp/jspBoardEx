@@ -12,7 +12,8 @@ public enum MapperUtil {
         modelMapper = new ModelMapper();
         modelMapper.getConfiguration().setFieldMatchingEnabled(true)
                 .setFieldAccessLevel(org.modelmapper.config.Configuration.AccessLevel.PRIVATE)
-                .setMatchingStrategy(MatchingStrategies.STRICT);
+                .setMatchingStrategy(MatchingStrategies.STRICT)
+                .setSkipNullEnabled(true); // vo객체가 dto의 null 값을 덮어쓰지 않고, 기존 값을 유지해준다.
     }
     public ModelMapper get() {
         return modelMapper;

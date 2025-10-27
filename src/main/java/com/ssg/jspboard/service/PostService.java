@@ -72,11 +72,8 @@ public enum PostService {
   }
 
 
-  public void edit(PostDTO post, String passphrase) {// 비번검증 + 수정
-
-    // 서버측 비밀번호 검사
+  public void edit(PostDTO post, String passphrase) {
     Optional<PostVO> original = dao.findById(post.getPostId());
-
     if (!original.isPresent()) {
       throw new IllegalArgumentException("해당 게시글이 존재하지 않습니다.");
     }
@@ -87,22 +84,46 @@ public enum PostService {
       throw new IllegalArgumentException("비밀번호가 같지 않습니다.");
     }
 
-    // 글 수정
-    PostVO voUpdated = PostVO.builder()
-            .postId(post.getPostId())
-            .title(post.getTitle())
-            .content(post.getContent())
-            .writer(existing.getWriter()) // 기존 작성자 유지
-            .passphrase(existing.getPassphrase()) // 기존 비밀번호 유지
-            .createdAt(existing.getCreatedAt())
-            .updatedAt(LocalDateTime.now()) // 수정 LocalDateTime 기준
-            .build();
+    // DTO의 값만 기존 VO에 덮어쓰기 => 빌더 패턴 필요 없음. 업데이트 시간은 어차피 DB에서 최신화됨.
+    modelMapper.map(post, existing);
 
-    boolean success = dao.update(voUpdated);
+    boolean success = dao.update(existing);
     if (!success) {
       throw new RuntimeException("게시글 업데이트 중 오류가 발생했습니다.");
     }
   }
+
+//  public void edit(PostDTO post, String passphrase) {// 비번검증 + 수정
+//
+//    // 서버측 비밀번호 검사
+//    Optional<PostVO> original = dao.findById(post.getPostId());
+//
+//    if (!original.isPresent()) {
+//      throw new IllegalArgumentException("해당 게시글이 존재하지 않습니다.");
+//    }
+//
+//    PostVO existing = original.get();
+//
+//    if (post.getPassphrase() == null || !Objects.equals(post.getPassphrase(), existing.getPassphrase())) {
+//      throw new IllegalArgumentException("비밀번호가 같지 않습니다.");
+//    }
+//
+//    // 글 수정
+//    PostVO voUpdated = PostVO.builder()
+//            .postId(post.getPostId())
+//            .title(post.getTitle())
+//            .content(post.getContent())
+//            .writer(existing.getWriter()) // 기존 작성자 유지
+//            .passphrase(existing.getPassphrase()) // 기존 비밀번호 유지
+//            .createdAt(existing.getCreatedAt())
+//            .updatedAt(LocalDateTime.now()) // 수정 LocalDateTime 기준
+//            .build();
+//
+//    boolean success = dao.update(voUpdated);
+//    if (!success) {
+//      throw new RuntimeException("게시글 업데이트 중 오류가 발생했습니다.");
+//    }
+//  }
 
 
   public void remove(long id, String passphrase) {
